@@ -1,0 +1,15 @@
+.list {
+  display: flex;
+  flex-flow: column;
+  margin: 20px auto;
+  list-style: none;
+  width: 400px;
+}
+.list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
