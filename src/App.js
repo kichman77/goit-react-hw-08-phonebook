@@ -1,5 +1,6 @@
 import React, { Component, Suspense } from "react";
 import Header from "./components/Header/Header";
+import { Switch, Route } from "react-router";
 import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
 import Filter from "./components/Filter/Filter";
@@ -7,7 +8,7 @@ import { connect } from "react-redux";
 import { selectors, operations } from "./redux/contacts";
 import routes from "./routes";
 import "./App.css";
-import { Switch, Route } from "react-router";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 class App extends Component {
   componentDidMount() {

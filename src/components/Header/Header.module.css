@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+.avatar {
+  margin-right: 30px;
+}
+.name {
+  margin-right: 10px;
+  font-weight: 900;
+  font-size: 16px;
+}
+.link {
+  padding: 10px 20px;
+}
