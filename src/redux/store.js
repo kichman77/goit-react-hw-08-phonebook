@@ -2,9 +2,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { contactReducer, loading } from "./contacts/contactsReducer";
 import filter from "./filter/filterReducer";
+import userReducer from "./user";
 
 const store = configureStore({
   reducer: {
+    auth: userReducer,
     contacts: contactReducer,
     filter,
     loading,
