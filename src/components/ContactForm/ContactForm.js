@@ -49,7 +49,7 @@ class ContactForm extends Component {
     const { handleSubmit, handleChange } = this;
     return (
       <>
-        {isExist && <Notification />}
+        {isExist && <Notification msg="contact already exist" />}
         <form className={styles.form} onSubmit={handleSubmit}>
           <input
             onChange={handleChange}

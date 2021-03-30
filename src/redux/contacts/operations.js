@@ -11,17 +11,13 @@ import {
   getContactsError,
 } from "./contactsAction";
 
-// console.log(axios);
-
-axios.defaults.baseURL = "http://localhost:4040/";
+axios.defaults.baseURL = "https://goit-phonebook-api.herokuapp.com";
 
 const addContact = (contact) => (dispatch) => {
   dispatch(addContactRequest());
   axios
     .post("contacts", contact)
-    .then((response) => response.data)
-    .then((data) => {
-      // console.log(data);
+    .then(({data}) => {
       data = dispatch(addContactSuccess(data));
       return data;
     })
@@ -40,8 +36,7 @@ const getContacts = () => (dispatch) => {
   dispatch(getContactsRequest());
   axios
     .get("contacts")
-    .then((response) => response.data)
-    .then((data) => dispatch(getContactsSuccess(data)))
+    .then(({data}) => dispatch(getContactsSuccess(data)))
     .catch((error) => dispatch(getContactsError(error)));
 };
 

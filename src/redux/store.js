@@ -1,21 +1,23 @@
-// import { createStore, combineReducers } from "redux";
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import { contactReducer, loading } from "./contacts/contactsReducer";
 import filter from "./filter/filterReducer";
-import userReducer from "./user";
+import { userReducer } from "./user";
 
-const store = configureStore({
+const config = { key: "auth", storage, whitelist: ["token"] };
+export const store = configureStore({
   reducer: {
-    auth: userReducer,
+    auth: persistReducer(config, userReducer),
     contacts: contactReducer,
     filter,
     loading,
   },
+  middleware: [
+    ...getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+  ],
 });
-// const rootReducer = combineReducers({ contacts: contactReducer, filter: filterReducer });
 
-// const store = createStore(
-//   rootReducer,
-//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-// );
-export default store;
+export const persistor = persistStore(store);

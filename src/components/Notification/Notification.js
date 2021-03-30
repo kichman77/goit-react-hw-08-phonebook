@@ -1,11 +1,11 @@
 import React from "react";
 import style from "./Notification.module.css";
 
-const Notification = () => {
+const Notification = ({msg}) => {
   return (
     <>
       <div className={style.wrapper}>
-        <p className={style.notif}>Contact already exist</p>
+        <p className={style.notif}>{msg}</p>
       </div>
     </>
   );

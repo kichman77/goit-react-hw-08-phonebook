@@ -15,18 +15,24 @@ const routes = [
     component: LoginPage,
     path: "/login",
     exact: true,
+    private: false,
+    restricted: false,
   },
   {
     id: uuid(),
     component: RegisterPage,
     path: "/signup",
     exact: true,
+    private: false,
+    restricted: true,
   },
   {
     id: uuid(),
     component: ContactsPage,
     path: "/contacts",
     exact: true,
+    private: true,
+    restricted: false,
   },
 ];
 

@@ -1,50 +1,44 @@
 import React, { Component, Suspense } from "react";
 import Header from "./components/Header/Header";
-import { Switch, Route } from "react-router";
-import ContactForm from "./components/ContactForm/ContactForm";
-import ContactList from "./components/ContactList/ContactList";
-import Filter from "./components/Filter/Filter";
+import { Switch } from "react-router";
+import PublicRoute from "./components/PublicRoute/PublicRoute";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { connect } from "react-redux";
-import { selectors, operations } from "./redux/contacts";
+import { operations } from "./redux/user";
 import routes from "./routes";
 import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 class App extends Component {
   componentDidMount() {
-    this.props.getContacts();
+    this.props.getCurrentUser();
   }
 
   render() {
-    const { isLoading } = this.props;
     return (
       <>
-        {isLoading && (
-          <h1>Мы тоже хотим, чтобы все было легко и просто!!! Но......</h1>
-        )}
         <Header />
-        <Suspense fallback="wait">
+        <Suspense fallback="Мы тоже хотим, чтобы все было легко и просто!!! Но......">
           <Switch>
             {routes.map((route) => {
-              return <Route key={route.id} {...route} />;
+              return route.private ? (
+                <PrivateRoute key={route.id} {...route} />
+              ) : (
+                <PublicRoute
+                  key={route.id}
+                  restricted={route.restricted}
+                  {...route}
+                />
+              );
             })}
           </Switch>
         </Suspense>
-        <ContactForm />
-        <Filter />
-        <ContactList />
       </>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    isLoading: selectors.getLoading(state),
-  };
-};
-
 const mapDispatchToProps = {
-  getContacts: operations.getContacts,
+  getCurrentUser: operations.getCurrentUser,
 };
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);
