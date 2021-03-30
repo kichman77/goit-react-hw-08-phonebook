@@ -8,7 +8,7 @@ import styles from "./LoginPage.module.css";
 
 class LoginPage extends Component {
   state = {
-    email: "",
+    email: "", 
     password: "",
   };
   handleChange = (e) => {
@@ -69,6 +69,6 @@ class LoginPage extends Component {
 const mapStateToProps = (state) => ({ error: selectors.getUserError(state) });
 
 const mapDispatchToProps = {
-  onLogin: operations.login(),
+  onLogin: operations.login,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

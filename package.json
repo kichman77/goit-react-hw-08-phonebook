@@ -2,7 +2,6 @@
   "name": "goit-react-hw-02-phonebook",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kichman77.github.io/goit-react-hw-08-phonebook/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
     "@testing-library/jest-dom": "^5.11.9",
@@ -10,7 +9,7 @@
     "@testing-library/user-event": "^12.7.1",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
-    "gh-pages": "^3.1.0",
+    "netlify-cli": "^3.13.8",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.2",
@@ -29,8 +28,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "login": "netlify login",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "netlify deploy -p"
   },
   "eslintConfig": {
     "extends": [

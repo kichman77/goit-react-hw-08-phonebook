@@ -81,6 +81,6 @@ class RegisterPage extends Component {
 const mapStateToProps = (state) => ({ error: selectors.getUserError(state) });
 
 const mapDispatchToProps = {
-  onRegister: operations.signup(),
+  onRegister: operations.signup,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage);
