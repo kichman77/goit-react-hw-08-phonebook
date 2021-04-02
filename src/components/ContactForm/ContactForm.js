@@ -28,10 +28,10 @@ class ContactForm extends Component {
     const contact = {
       id: uuidv4(),
       name,
-      phone,
+      number: phone,
     };
     const condition = contacts.find((elem) => {
-      console.log(elem.name);
+      // console.log(elem.name);
       return elem.name === contact.name;
     });
 

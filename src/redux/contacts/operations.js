@@ -11,13 +11,14 @@ import {
   getContactsError,
 } from "./contactsAction";
 
-axios.defaults.baseURL = "https://goit-phonebook-api.herokuapp.com";
+axios.defaults.baseURL = "https://goit-phonebook-api.herokuapp.com/";
 
-const addContact = (contact) => (dispatch) => {
+const addContact = ({ name, number }) => (dispatch) => {
   dispatch(addContactRequest());
   axios
-    .post("contacts", contact)
-    .then(({data}) => {
+    .post("contacts", { name, number })
+    .then(({ data }) => {
+      console.log(data);
       data = dispatch(addContactSuccess(data));
       return data;
     })
@@ -32,11 +33,13 @@ const deleteContact = (id) => (dispatch) => {
     .catch((error) => dispatch(deleteContactError(error)));
 };
 
-const getContacts = () => (dispatch) => {
+const getContacts = () => (dispatch, getState) => {
+  const state = getState();
   dispatch(getContactsRequest());
+  axios.defaults.headers.common.Authorization = `Bearer ${state.auth.token}`;
   axios
     .get("contacts")
-    .then(({data}) => dispatch(getContactsSuccess(data)))
+    .then(({ data }) => dispatch(getContactsSuccess(data)))
     .catch((error) => dispatch(getContactsError(error)));
 };
 

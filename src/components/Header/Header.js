@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import styles from "./Header.module.css";
 import { selectors, operations } from "../../redux/user";
+import UserMenu from "../UserMenu/UserMenu";
 
 const Styles = styled.div`
   a,
@@ -34,23 +35,13 @@ const Header = () => {
                 <NavLink className={styles.link} to="/signup">
                   Sign up
                 </NavLink>
-                <NavLink exact to="/contacts">
-                  Contacts
-                </NavLink>
               </Nav>
-              {true && (
+              {false && (
                 <>
-                  <div className={styles.container}>
-                    <img
-                      src=""
-                      alt="avatar"
-                      width="32"
-                      className={styles.avatar}
-                    />
-                  </div>
-                  <Button variant="primary" className="mr-2">
-                    Log out
-                  </Button>
+                  <NavLink exact to="/contacts">
+                    Contacts
+                  </NavLink>
+                  <UserMenu />
                 </>
               )}
             </Navbar.Collapse>

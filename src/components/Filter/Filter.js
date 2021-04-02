@@ -1,24 +1,37 @@
-import React from "react";
+import React, { Component } from "react";
 import styles from "./Filter.module.css";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { selectors } from "../../redux/contacts";
 import filterContacts from "../../redux/filter/filterAction";
 
-const Filter = ({ filterContact, filter }) => {
-  return (
-    <input
-      value={filter}
-      className={styles.input}
-      onChange={(event) => {
-        return filterContact(event.target.value);
-      }}
-      placeholder="Find contacts by name"
-      name="filter"
-      type="text"
-    />
-  );
-};
+class Filter extends Component {
+  handleChange = (e) => {
+    const { filterContact } = this.props;
+    filterContact(e.target.value);
+  };
+  handleSubmit = (e) => {
+    e.preventDefault();
+    e.target.filter.value = "";
+  };
+
+  render() {
+    const { filter } = this.props;
+    const { handleChange, handleSubmit } = this;
+    return (
+      <form onSubmit={handleSubmit}>
+        <input
+          value={filter}
+          className={styles.input}
+          onChange={handleChange}
+          placeholder="Find contacts by name"
+          name="filter"
+          type="text"
+        />
+      </form>
+    );
+  }
+}
 const mapStateToProps = (state) => {
   return { filter: selectors.getFilter(state) };
 };

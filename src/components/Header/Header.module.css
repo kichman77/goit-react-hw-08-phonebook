@@ -1,10 +1,4 @@
-.container {
-  display: flex;
-  align-items: center;
-}
-.avatar {
-  margin-right: 30px;
-}
+
 .name {
   margin-right: 10px;
   font-weight: 900;

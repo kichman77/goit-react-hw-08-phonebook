@@ -18,7 +18,7 @@ const ContactList = ({ showContacts, handleDelete }) => {
                 key={el.id}
               >
                 {el.name}
-                <span>{el.phone}</span>
+                <span>{el.number}</span>
                 <button className={styles.btn} type="button">
                   Delete
                 </button>
@@ -32,7 +32,9 @@ const ContactList = ({ showContacts, handleDelete }) => {
 };
 
 const mapStateToProps = (store) => {
-  return { showContacts: selectors.getFilteredContacts(store) };
+  return {
+    showContacts: selectors.getFilteredContacts(store),
+  };
 };
 const mapDispatchToProps = {
   handleDelete: operations.deleteContact,
@@ -44,7 +46,7 @@ ContactList.propTypes = {
     PropTypes.exact({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      phone: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
     })
   ),
   handleDelete: PropTypes.func.isRequired,
