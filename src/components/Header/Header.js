@@ -1,10 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Navbar, Nav, Button, Container } from "react-bootstrap";
+import { Navbar, Nav, Container } from "react-bootstrap";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import styles from "./Header.module.css";
-import { selectors, operations } from "../../redux/user";
+import { selectors } from "../../redux/user";
 import UserMenu from "../UserMenu/UserMenu";
 
 const Styles = styled.div`
@@ -19,7 +19,7 @@ const Styles = styled.div`
   }
 `;
 
-const Header = () => {
+const Header = ({ isAuth, email }) => {
   return (
     <>
       <Styles>
@@ -29,21 +29,25 @@ const Header = () => {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="mr-auto">
-                <NavLink className={styles.link} to="/login">
-                  Log in
-                </NavLink>
-                <NavLink className={styles.link} to="/signup">
-                  Sign up
-                </NavLink>
+                {!isAuth && (
+                  <>
+                    <NavLink className={styles.link} to="/login">
+                      Log in
+                    </NavLink>
+                    <NavLink className={styles.link} to="/signup">
+                      Sign up
+                    </NavLink>
+                  </>
+                )}
               </Nav>
-              {false && (
+              {isAuth && (
                 <>
                   <NavLink exact to="/contacts">
                     Contacts
                   </NavLink>
-                  <UserMenu />
                 </>
               )}
+              {isAuth && email && <UserMenu />}
             </Navbar.Collapse>
           </Container>
         </Navbar>
@@ -55,5 +59,5 @@ const mapStateToProps = (state) => ({
   isAuth: selectors.getAuth(state),
   email: selectors.getUserEmail(state),
 });
-const mapDispatchToProps = { onLogout: operations.onLogout };
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+
+export default connect(mapStateToProps)(Header);

@@ -13,6 +13,28 @@
   box-shadow: 0 0 20px white;
 }
 
-.notif{
+.notif {
   line-height: 1.5;
+}
+
+.enter {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 300ms linear;
+}
+
+.enterActive {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.exit {
+  opacity: 1;
+  transform: translateX(1);
+  transition: all 300ms linear;
+}
+
+.exitActive {
+  opacity: 0;
+  transform: translateX(-100%);
 }

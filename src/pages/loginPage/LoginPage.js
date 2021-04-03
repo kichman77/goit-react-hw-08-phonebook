@@ -8,7 +8,7 @@ import styles from "./LoginPage.module.css";
 
 class LoginPage extends Component {
   state = {
-    email: "", 
+    email: "",
     password: "",
   };
   handleChange = (e) => {
@@ -59,7 +59,12 @@ class LoginPage extends Component {
             <Button variant="primary" type="submit">
               log in
             </Button>
-            {typeof error === "string" && <Notification msg="something went wrong, try agan " />}
+            {typeof error === "string" && (
+              <Notification
+                error={!!error}
+                msg="something went wrong, try agan "
+              />
+            )}
           </Form>
         </Container>
       </>

@@ -4,12 +4,12 @@ import { Button, Container } from "react-bootstrap";
 import styles from "./UserMenu.module.css";
 import { selectors, operations } from "../../redux/user";
 
-const UserMenu = ({ email, onLogout }) => {
+const UserMenu = ({ email, onLogout, userName }) => {
   return (
     <Container className="d-flex justify-content-end">
       <div className={styles.container}>
         <p className={styles.text}>
-          Welcome, <span>{email}</span>
+          Welcome, <span>{userName}</span>
         </p>
       </div>
       <Button onClick={onLogout} variant="primary" className="mr-2">
@@ -20,8 +20,9 @@ const UserMenu = ({ email, onLogout }) => {
 };
 const mapStateToProps = (state) => ({
   email: selectors.getUserEmail(state),
+  userName: selectors.getUserName(state),
 });
 const mapDispatchToProps = {
-  onLogout: operations.logout
-}
+  onLogout: operations.logout,
+};
 export default connect(mapStateToProps, mapDispatchToProps)(UserMenu);

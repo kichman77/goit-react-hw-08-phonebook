@@ -14,7 +14,7 @@ const {
   getCurrentUserSuccess,
   getCurrentUserError,
 } = actions;
-const initState = { id: "", name: "", email: "", password: "" };
+const initState = { name: null, email: null };
 
 const userReducer = createReducer(initState, {
   [userSignUpSuccess]: (_, action) => {
@@ -38,7 +38,7 @@ const tokenReducer = createReducer(null, {
   [userLoginSuccess]: (_, action) => {
     return action.payload.token;
   },
-  [userLogoutSuccess]: (_, action) => null,
+  [userLogoutSuccess]: () => null,
 });
 
 const errorReducer = createReducer(null, {

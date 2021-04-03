@@ -71,7 +71,12 @@ class RegisterPage extends Component {
             <Button variant="primary" type="submit">
               register
             </Button>
-            {error && <Notification msg="something went wrong, try agan " />}
+            {typeof error === "string" && (
+              <Notification
+                error={!!error}
+                msg="something went wrong, try agan "
+              />
+            )}
           </Form>
         </Container>
       </>

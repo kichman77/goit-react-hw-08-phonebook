@@ -18,7 +18,6 @@ const addContact = ({ name, number }) => (dispatch) => {
   axios
     .post("contacts", { name, number })
     .then(({ data }) => {
-      console.log(data);
       data = dispatch(addContactSuccess(data));
       return data;
     })

@@ -5,7 +5,7 @@ import { contactReducer, loading } from "./contacts/contactsReducer";
 import filterReducer from "./filter/filterReducer";
 import { userReducer } from "./user";
 
-const config = { key: "auth", storage, whitelist: ["token"] };
+const config = { key: "auth", storage  };
 export const store = configureStore({
   reducer: {
     auth: persistReducer(config, userReducer),
