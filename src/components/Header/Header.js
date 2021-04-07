@@ -47,7 +47,7 @@ const Header = ({ isAuth, email }) => {
                   </NavLink>
                 </>
               )}
-              {isAuth && email && <UserMenu />}
+              {isAuth && <UserMenu />}
             </Navbar.Collapse>
           </Container>
         </Navbar>

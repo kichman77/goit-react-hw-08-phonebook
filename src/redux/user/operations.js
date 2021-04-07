@@ -1,6 +1,6 @@
 import axios from "axios";
 import actions from "./actions";
-console.log(actions);
+// console.log(actions);
 const {
   userSignUpRequest,
   userSignUpSuccess,
@@ -15,7 +15,7 @@ const {
   getCurrentUserSuccess,
   getCurrentUserError,
 } = actions;
-console.log(userSignUpRequest);
+// console.log(userSignUpRequest);
 axios.defaults.baseURL = `
 https://goit-phonebook-api.herokuapp.com
 `;
@@ -30,13 +30,13 @@ const userToken = {
 };
 
 const signup = (credentials) => (dispatch) => {
-  console.log(dispatch);
+  // console.log(dispatch);
   dispatch(userSignUpRequest());
   axios
     .post("/users/signup", credentials)
     .then((response) => {
       userToken.set(response.data.token);
-      console.log(response.data.token);
+      // console.log(response.data.token);
       dispatch(userSignUpSuccess(response.data));
     })
     .catch((error) => dispatch(userSingUpError(error.message)));

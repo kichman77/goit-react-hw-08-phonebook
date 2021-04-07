@@ -11,7 +11,7 @@ const UserMenu = ({ email, onLogout, userName }) => {
         <p className={styles.text}>
           Welcome, <span>{userName}</span>
         </p>
-      </div>
+      </div>   
       <Button onClick={onLogout} variant="primary" className="mr-2">
         Log out
       </Button>
