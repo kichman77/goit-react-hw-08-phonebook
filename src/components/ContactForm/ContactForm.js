@@ -26,7 +26,6 @@ class ContactForm extends Component {
     const { name, phone } = this.state;
     const { contacts, addContact } = this.props;
     const contact = {
-      id: uuidv4(),
       name,
       number: phone,
     };
