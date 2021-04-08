@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { connect } from "react-redux";
-import { v4 as uuid } from "uuid";
 import { operations, selectors } from "../../redux/user";
 import Notification from "../../components/Notification/Notification";
 import styles from "./LoginPage.module.css";
@@ -19,7 +18,6 @@ class LoginPage extends Component {
     const { onLogin } = this.props;
     e.preventDefault();
     const user = {
-      id: uuid(),
       ...this.state,
     };
     onLogin(user);

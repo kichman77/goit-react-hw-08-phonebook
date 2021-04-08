@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { connect } from "react-redux";
-import { v4 as uuid } from "uuid";
 import { operations, selectors } from "../../redux/user";
 import Notification from "../../components/Notification/Notification";
 import styles from "./RegisterPage.module.css";
@@ -20,7 +19,6 @@ class RegisterPage extends Component {
     const { onRegister } = this.props;
     e.preventDefault();
     const user = {
-      id: uuid(),
       ...this.state,
     };
     onRegister(user);

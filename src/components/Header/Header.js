@@ -20,6 +20,7 @@ const Styles = styled.div`
 `;
 
 const Header = ({ isAuth, email }) => {
+  console.log(isAuth);
   return (
     <>
       <Styles>

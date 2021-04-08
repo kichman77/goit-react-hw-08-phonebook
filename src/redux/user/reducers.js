@@ -1,7 +1,7 @@
 import { createReducer, combineReducers } from "@reduxjs/toolkit";
 import actions from "./actions";
 const {
-  userSignUpRequest,
+  userSignUpRequest, 
   userSignUpSuccess,
   userSingUpError,
   userLoginRequest,

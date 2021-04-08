@@ -66,7 +66,7 @@ const logout = () => (dispatch) => {
 
 const getCurrentUser = () => (dispatch, getState) => {
   const {
-    auth: { userToken: persistedToken },
+    auth: { token: persistedToken },
   } = getState();
   if (!persistedToken) return;
   dispatch(getCurrentUserRequest());
