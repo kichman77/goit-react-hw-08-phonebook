@@ -34,10 +34,10 @@ const signup = (credentials) => (dispatch) => {
   dispatch(userSignUpRequest());
   axios
     .post("/users/signup", credentials)
-    .then((response) => {
-      userToken.set(response.data.token);
+    .then(({ data }) => {
+      userToken.set(data.token);
       // console.log(response.data.token);
-      dispatch(userSignUpSuccess(response.data));
+      dispatch(userSignUpSuccess(data));
     })
     .catch((error) => dispatch(userSingUpError(error.message)));
 };
@@ -46,9 +46,9 @@ const login = (credentials) => (dispatch) => {
   dispatch(userLoginRequest());
   axios
     .post("/users/login", credentials)
-    .then((response) => {
-      userToken.set(response.data.token);
-      dispatch(userLoginSuccess(response.data));
+    .then(({ data }) => {
+      userToken.set(data.token);
+      dispatch(userLoginSuccess(data));
     })
     .catch((error) => dispatch(userLoginError(error.message)));
 };
@@ -69,10 +69,11 @@ const getCurrentUser = () => (dispatch, getState) => {
     auth: { token: persistedToken },
   } = getState();
   if (!persistedToken) return;
+  userToken.set(persistedToken);
   dispatch(getCurrentUserRequest());
   axios
     .get("/users/current")
-    .then((response) => dispatch(getCurrentUserSuccess(response.data)))
+    .then(({ data }) => dispatch(getCurrentUserSuccess(data)))
     .catch((error) => dispatch(getCurrentUserError(error)));
 };
 

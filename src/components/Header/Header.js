@@ -19,8 +19,8 @@ const Styles = styled.div`
   }
 `;
 
-const Header = ({ isAuth, email }) => {
-  console.log(isAuth);
+const Header = ({ isAuth }) => {
+  // console.log(isAuth);
   return (
     <>
       <Styles>
@@ -30,7 +30,14 @@ const Header = ({ isAuth, email }) => {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="mr-auto">
-                {!isAuth && (
+                {isAuth ? (
+                  <>
+                    <NavLink exact to="/contacts">
+                      Contacts
+                    </NavLink>
+                    <UserMenu />
+                  </>
+                ) : (
                   <>
                     <NavLink className={styles.link} to="/login">
                       Log in
@@ -41,14 +48,6 @@ const Header = ({ isAuth, email }) => {
                   </>
                 )}
               </Nav>
-              {isAuth && (
-                <>
-                  <NavLink exact to="/contacts">
-                    Contacts
-                  </NavLink>
-                </>
-              )}
-              {isAuth && <UserMenu />}
             </Navbar.Collapse>
           </Container>
         </Navbar>
