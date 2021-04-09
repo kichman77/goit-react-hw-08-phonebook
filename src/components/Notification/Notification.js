@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./Notification.module.css";
 import { CSSTransition } from "react-transition-group";
+
 const Notification = ({ msg, error }) => {
   return (
     <>

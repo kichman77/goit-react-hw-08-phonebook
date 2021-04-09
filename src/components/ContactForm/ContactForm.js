@@ -28,17 +28,16 @@ class ContactForm extends Component {
       name,
       number: phone,
     };
-    const condition = contacts.find((elem) => {
-      // console.log(elem.name);
-      return elem.name === contact.name;
-    });
+    const condition = contacts.some((elem) => elem.name === contact.name);
 
+    console.log(this.state.isExist);
     if (condition) {
       this.setState({ isExist: true });
       setTimeout(() => this.setState({ isExist: false }), 2000);
       return;
+    } else {
+      addContact(contact);
     }
-    addContact(contact);
     this.setState({ name: "", phone: "" });
   };
 
@@ -47,7 +46,9 @@ class ContactForm extends Component {
     const { handleSubmit, handleChange } = this;
     return (
       <>
-        {isExist && <Notification msg="contact already exist" />}
+        {isExist && (
+          <Notification msg="contact already exist" error={isExist} />
+        )}
         <form className={styles.form} onSubmit={handleSubmit}>
           <input
             onChange={handleChange}
